@@ -2,7 +2,7 @@
 
 namespace mre
 {
-    Robot::Robot(RobotControlLogic *rcl_ptr, TSVector<geometry_msgs::PoseStamped> *exp_point) : exp_point_(exp_point)
+    Robot::Robot(RobotControlLogic *rcl_ptr, std::shared_ptr<TSVector<geometry_msgs::PoseStamped>> exp_point) : exp_point_(exp_point)
     {
         rcl_ptr_.reset(rcl_ptr);
 
@@ -12,7 +12,6 @@ namespace mre
 
     Robot::~Robot()
     {
-        // delete rcl_ptr_;
     }
 
     void Robot::run()

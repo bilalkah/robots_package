@@ -7,6 +7,7 @@
 #include <exploration/exploration.h>
 
 #include <ros/ros.h>
+#include <XmlRpcValue.h>
 
 #include <thread>
 #include <memory>
@@ -23,9 +24,7 @@ namespace mre
         ros::NodeHandle nh_;
         std::unique_ptr<Exploration> exp_ptr_;
         std::vector<std::unique_ptr<Robot>> v_robot_ptr_;
-        // Exploration *exp_ptr_;
-        // std::vector<Robot *> v_robot_ptr_;
-        TSVector<geometry_msgs::PoseStamped> *exploration_points_ptr_;
+        std::shared_ptr<TSVector<geometry_msgs::PoseStamped>> exploration_points_ptr_;
     };
 
 } // namespace mre

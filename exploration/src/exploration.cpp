@@ -2,7 +2,7 @@
 
 namespace mre
 {
-    Exploration::Exploration(ros::NodeHandle &nh, TSVector<geometry_msgs::PoseStamped> *exp_point) : nh_(nh), exp_point_(exp_point), min_cluster_(10)
+    Exploration::Exploration(ros::NodeHandle &nh, std::shared_ptr<TSVector<geometry_msgs::PoseStamped>> exp_point, int min_cluster) : nh_(nh), exp_point_(exp_point), min_cluster_(min_cluster)
     {
         map_sub_ = nh_.subscribe("/map", 1, &Exploration::mapCallback, this);
         fm_pub_ = nh_.advertise<visualization_msgs::Marker>("/frontier", 1);

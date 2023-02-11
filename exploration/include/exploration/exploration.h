@@ -12,13 +12,14 @@
 
 #include <queue>
 #include <numeric>
+#include <string>
 
 namespace mre
 {
     class Exploration
     {
     public:
-        Exploration(ros::NodeHandle &nh, TSVector<geometry_msgs::PoseStamped> * exp_point);
+        Exploration(ros::NodeHandle &nh, std::shared_ptr<TSVector<geometry_msgs::PoseStamped>>exp_point, int min_cluster);
 
     private:
         ros::NodeHandle &nh_;
@@ -26,7 +27,7 @@ namespace mre
         ros::Publisher fm_pub_;
 
         std::unique_ptr<OGMap> og_map_;
-        TSVector<geometry_msgs::PoseStamped> * exp_point_;
+        std::shared_ptr<TSVector<geometry_msgs::PoseStamped>> exp_point_;
         int min_cluster_;
 
         void mapCallback(const nav_msgs::OccupancyGrid::ConstPtr &msg);
